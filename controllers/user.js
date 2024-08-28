@@ -40,3 +40,17 @@ module.exports.loginUser = (req, res) => {
 		})
 		.catch(err => res.status(500).send({ error: "Error in find" }))
 };
+
+module.exports.getProfile = (req, res) => {
+	User.findById(req.user.id)
+    .then(user => {
+
+    	if(!user) {
+            return res.status(404).send({ message: 'User not found' })
+
+    	} 
+    	user.password = "";
+	    return res.status(200).send({user: user});   		
+    })
+    .catch(err => errorHandler(err, req, res));
+};
