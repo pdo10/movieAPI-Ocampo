@@ -1,3 +1,5 @@
+const Movie = require("../models/Movie");
+
 module.exports.getAllMovies = (req, res) => {
     if (!Array.isArray(library)) {
         return res.status(500).send({ error: "Invalid library format" });
